@@ -21,7 +21,10 @@ def get_llm(model_name=None):
         base_url = os.getenv(
             "FEATHERLESS_BASE_URL", "https://api.featherless.ai/v1"
         )
-        model = model_name or "meta-llama/Llama-3.3-70B-Instruct"
+        # Default: Qwen2.5-72B (ungated, no HuggingFace verification needed)
+        # Other options: "meta-llama/Meta-Llama-3.1-8B-Instruct" (smaller, faster)
+        # Gated models require HF verification: "meta-llama/Llama-3.3-70B-Instruct"
+        model = model_name or "Qwen/Qwen2.5-72B-Instruct"
         logger.info(f"Using Featherless AI LLM: {model}")
         return ChatOpenAI(
             model=model,
