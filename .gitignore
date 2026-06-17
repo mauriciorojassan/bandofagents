@@ -1,0 +1,31 @@
+# Secrets
+.env
+agent_config.yaml
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.venv/
+venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# uv
+.python-version
+
+# Codeband workspace (if used later)
+workspace/
+.codeband/
+
+# Atl
+.atl/
