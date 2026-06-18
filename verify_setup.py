@@ -1,4 +1,4 @@
-"""Verify setup: test Band connectivity and LLM configuration for all 3 agents."""
+"""Verify setup: test Band connectivity and LLM configuration for all 4 agents."""
 
 import asyncio
 import logging
@@ -68,7 +68,7 @@ async def verify_agent(agent_key: str) -> bool:
 async def main():
     load_dotenv()
 
-    agents = ["tech_writer", "qa_strategist", "release_coordinator"]
+    agents = ["orchestrator", "tech_writer", "qa_strategist", "release_coordinator"]
     results = {}
 
     logger.info("=" * 50)

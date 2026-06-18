@@ -17,8 +17,8 @@ logger = logging.getLogger(__name__)
 async def main():
     load_dotenv()
 
-    agent_id, api_key = load_agent_config("qa_strategist")
-    custom_section = load_prompt("qa_strategist")
+    agent_id, api_key = load_agent_config("orchestrator")
+    custom_section = load_prompt("orchestrator")
 
     adapter = LangGraphAdapter(
         llm=get_llm(),
@@ -35,7 +35,7 @@ async def main():
         rest_url=os.getenv("BAND_REST_URL"),
     )
 
-    logger.info("QA Strategist agent starting — connected to Band")
+    logger.info("Pipeline Orchestrator agent starting — connected to Band")
     await agent.run()
 
 

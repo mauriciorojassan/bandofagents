@@ -3,6 +3,7 @@ import asyncio
 import logging
 
 AGENTS = {
+    "orchestrator": "agents.orchestrator",
     "tech_writer": "agents.tech_writer",
     "qa_strategist": "agents.qa_strategist",
     "release_coordinator": "agents.release_coordinator",

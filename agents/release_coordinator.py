@@ -10,7 +10,7 @@ from langgraph.checkpoint.memory import InMemorySaver
 
 from agents.common import get_llm, load_prompt
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 
