@@ -79,3 +79,19 @@ def get_adapter_features():
         capabilities={Capability.MEMORY},
         emit={Emit.EXECUTION},
     )
+
+
+def get_adapter_features_safe():
+    """Return AdapterFeatures, falling back to execution-only if MEMORY is not available.
+
+    Band memory tools require an Enterprise plan. If the agent gets 403 Forbidden
+    on memory API calls, the tools will be available but return errors. The prompts
+    instruct agents to use memories as best-effort: try them, but don't fail if they
+    return errors.
+    """
+    from band import AdapterFeatures, Capability, Emit
+
+    return AdapterFeatures(
+        capabilities={Capability.MEMORY},
+        emit={Emit.EXECUTION},
+    )
