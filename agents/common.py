@@ -7,22 +7,13 @@ logger = logging.getLogger(__name__)
 def get_llm(model_name=None):
     """Create an LLM instance based on available API keys.
 
-    Priority: Google Gemini > Featherless AI > OpenAI.
-    Gemini is fastest (1-3s) and free. Featherless is fallback.
+    Priority: Featherless AI > Google Gemini > OpenAI.
+    Featherless Qwen 14B is reliable for tool calling.
+    Gemini Flash as fast fallback when quota is available.
     """
-    google_key = os.getenv("GOOGLE_API_KEY")
     featherless_key = os.getenv("FEATHERLESS_API_KEY")
+    google_key = os.getenv("GOOGLE_API_KEY")
     openai_key = os.getenv("OPENAI_API_KEY")
-
-    if google_key:
-        from langchain_google_genai import ChatGoogleGenerativeAI
-
-        model = model_name or os.getenv("GOOGLE_MODEL", "gemini-2.0-flash")
-        logger.info(f"Using Google Gemini LLM: {model}")
-        return ChatGoogleGenerativeAI(
-            model=model,
-            google_api_key=google_key,
-        )
 
     if featherless_key:
         from langchain_openai import ChatOpenAI
@@ -38,6 +29,16 @@ def get_llm(model_name=None):
             base_url=base_url,
         )
 
+    if google_key:
+        from langchain_google_genai import ChatGoogleGenerativeAI
+
+        model = model_name or os.getenv("GOOGLE_MODEL", "gemini-2.0-flash")
+        logger.info(f"Using Google Gemini LLM: {model}")
+        return ChatGoogleGenerativeAI(
+            model=model,
+            google_api_key=google_key,
+        )
+
     if openai_key:
         from langchain_openai import ChatOpenAI
 
@@ -51,7 +52,7 @@ def get_llm(model_name=None):
         )
 
     raise ValueError(
-        "No LLM API key found. Set GOOGLE_API_KEY, FEATHERLESS_API_KEY, or OPENAI_API_KEY in .env"
+        "No LLM API key found. Set FEATHERLESS_API_KEY, GOOGLE_API_KEY, or OPENAI_API_KEY in .env"
     )
 
 
