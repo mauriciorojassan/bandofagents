@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f0f23;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1a3e;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1280" height="640" fill="url(#bg)"/>
+  
+  <!-- Accent line -->
+  <rect x="100" y="280" width="200" height="4" rx="2" fill="url(#accent)"/>
+  
+  <!-- Title -->
+  <text x="100" y="260" font-family="system-ui, -apple-system, sans-serif" font-size="64" font-weight="800" fill="#f8fafc" letter-spacing="-2">
+    Band of Agents
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="100" y="340" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="400" fill="#94a3b8">
+    Post-Merge Delivery Pipeline
+  </text>
+  
+  <!-- Track badge -->
+  <rect x="100" y="380" width="320" height="36" rx="18" fill="#6366f1" opacity="0.2"/>
+  <text x="260" y="404" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="600" fill="#a5b4fc" text-anchor="middle">
+    Track 2 · Multi-Agent Software Development
+  </text>
+  
+  <!-- Agent icons on the right -->
+  <g transform="translate(900, 180)">
+    <!-- Orchestrator -->
+    <rect x="0" y="0" width="260" height="80" rx="12" fill="#1e1b4b" stroke="#6366f1" stroke-width="2"/>
+    <text x="20" y="35" font-family="monospace" font-size="14" fill="#a5b4fc">🏗️</text>
+    <text x="50" y="35" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#e2e8f0">Pipeline Orchestrator</text>
+    <text x="50" y="55" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">Delegates · Discovers · Tracks</text>
+    
+    <!-- Tech Writer -->
+    <rect x="0" y="100" width="260" height="80" rx="12" fill="#1e1b4b" stroke="#22d3ee" stroke-width="2"/>
+    <text x="20" y="135" font-family="monospace" font-size="14" fill="#22d3ee">📝</text>
+    <text x="50" y="135" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#e2e8f0">Technical Writer</text>
+    <text x="50" y="155" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">Docs · README · API Docs</text>
+    
+    <!-- QA -->
+    <rect x="0" y="200" width="260" height="80" rx="12" fill="#1e1b4b" stroke="#f59e0b" stroke-width="2"/>
+    <text x="20" y="235" font-family="monospace" font-size="14" fill="#f59e0b">🧪</text>
+    <text x="50" y="235" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#e2e8f0">QA Strategist</text>
+    <text x="50" y="255" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">Risk · Tests · Edge Cases</text>
+    
+    <!-- Release -->
+    <rect x="0" y="300" width="260" height="80" rx="12" fill="#1e1b4b" stroke="#10b981" stroke-width="2"/>
+    <text x="20" y="335" font-family="monospace" font-size="14" fill="#10b981">🚀</text>
+    <text x="50" y="335" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#e2e8f0">Release Coordinator</text>
+    <text x="50" y="355" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">Changelog · Version · Checklist</text>
+  </g>
+  
+  <!-- Connection lines -->
+  <line x1="940" y1="260" x2="940" y2="280" stroke="#6366f1" stroke-width="2" stroke-dasharray="4,4" opacity="0.6"/>
+  <line x1="940" y1="360" x2="940" y2="380" stroke="#22d3ee" stroke-width="2" stroke-dasharray="4,4" opacity="0.6"/>
+  <line x1="940" y1="460" x2="940" y2="480" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4,4" opacity="0.6"/>
+  
+  <!-- Footer -->
+  <text x="100" y="600" font-family="system-ui, sans-serif" font-size="14" fill="#64748b">
+    LangGraph · Band SDK · Qwen 2.5 14B · Featherless AI
+  </text>
+  
+  <!-- Hackathon badge -->
+  <text x="1180" y="600" font-family="system-ui, sans-serif" font-size="14" fill="#64748b" text-anchor="end">
+    Band of Agents Hackathon 2026
+  </text>
+</svg>
