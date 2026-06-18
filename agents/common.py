@@ -7,13 +7,22 @@ logger = logging.getLogger(__name__)
 def get_llm(model_name=None):
     """Create an LLM instance based on available API keys.
 
-    Priority: Featherless AI > Google Gemini > OpenAI.
-    Featherless and OpenAI use the same OpenAI-compatible SDK,
-    just with different base_url and api_key.
+    Priority: Google Gemini > Featherless AI > OpenAI.
+    Gemini is fastest (1-3s) and free. Featherless is fallback.
     """
-    featherless_key = os.getenv("FEATHERLESS_API_KEY")
     google_key = os.getenv("GOOGLE_API_KEY")
+    featherless_key = os.getenv("FEATHERLESS_API_KEY")
     openai_key = os.getenv("OPENAI_API_KEY")
+
+    if google_key:
+        from langchain_google_genai import ChatGoogleGenerativeAI
+
+        model = model_name or os.getenv("GOOGLE_MODEL", "gemini-2.0-flash")
+        logger.info(f"Using Google Gemini LLM: {model}")
+        return ChatGoogleGenerativeAI(
+            model=model,
+            google_api_key=google_key,
+        )
 
     if featherless_key:
         from langchain_openai import ChatOpenAI
@@ -21,24 +30,12 @@ def get_llm(model_name=None):
         base_url = os.getenv(
             "FEATHERLESS_BASE_URL", "https://api.featherless.ai/v1"
         )
-        # Default: Qwen2.5-7B-Instruct (faster responses, good enough for prompts)
-        # For more capable but slower: "Qwen/Qwen2.5-72B-Instruct"
-        model = model_name or os.getenv("FEATHERLESS_MODEL", "Qwen/Qwen2.5-7B-Instruct")
+        model = model_name or os.getenv("FEATHERLESS_MODEL", "Qwen/Qwen2.5-14B-Instruct")
         logger.info(f"Using Featherless AI LLM: {model}")
         return ChatOpenAI(
             model=model,
             api_key=featherless_key,
             base_url=base_url,
-        )
-
-    if google_key:
-        from langchain_google_genai import ChatGoogleGenerativeAI
-
-        model = model_name or "gemini-2.0-flash"
-        logger.info(f"Using Google Gemini LLM: {model}")
-        return ChatGoogleGenerativeAI(
-            model=model,
-            google_api_key=google_key,
         )
 
     if openai_key:
@@ -54,7 +51,7 @@ def get_llm(model_name=None):
         )
 
     raise ValueError(
-        "No LLM API key found. Set FEATHERLESS_API_KEY, GOOGLE_API_KEY, or OPENAI_API_KEY in .env"
+        "No LLM API key found. Set GOOGLE_API_KEY, FEATHERLESS_API_KEY, or OPENAI_API_KEY in .env"
     )
 
 
