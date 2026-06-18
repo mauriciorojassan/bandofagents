@@ -8,7 +8,7 @@ from band.adapters import LangGraphAdapter
 from band.config import load_agent_config
 from langgraph.checkpoint.memory import InMemorySaver
 
-from agents.common import get_llm, load_prompt
+from agents.common import get_llm, load_prompt, get_adapter_features
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -24,7 +24,7 @@ async def main():
         llm=get_llm(),
         checkpointer=InMemorySaver(),
         custom_section=custom_section,
-        enable_execution_reporting=True,
+        features=get_adapter_features(),
     )
 
     agent = Agent.create(

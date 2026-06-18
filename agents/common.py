@@ -64,3 +64,18 @@ def load_prompt(agent_name: str) -> str:
     prompt_path = os.path.normpath(prompt_path)
     with open(prompt_path) as f:
         return f.read()
+
+
+def get_adapter_features():
+    """Return AdapterFeatures with MEMORY capability and EXECUTION emit enabled.
+
+    MEMORY capability adds band_store_memory and band_list_memories tools
+    to the agent, enabling cross-agent persistent knowledge sharing.
+    EXECUTION emit sends tool-use logs back to the Band platform.
+    """
+    from band import AdapterFeatures, Capability, Emit
+
+    return AdapterFeatures(
+        capabilities={Capability.MEMORY},
+        emit={Emit.EXECUTION},
+    )

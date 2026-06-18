@@ -18,7 +18,7 @@ async def verify_agent(agent_key: str) -> bool:
     from band.config import load_agent_config
     from langgraph.checkpoint.memory import InMemorySaver
 
-    from agents.common import get_llm, load_prompt
+    from agents.common import get_llm, load_prompt, get_adapter_features
 
     try:
         agent_id, api_key = load_agent_config(agent_key)
@@ -46,7 +46,7 @@ async def verify_agent(agent_key: str) -> bool:
             llm=llm,
             checkpointer=InMemorySaver(),
             custom_section=custom_section,
-            enable_execution_reporting=True,
+            features=get_adapter_features(),
         )
         agent = Agent.create(
             adapter=adapter,
