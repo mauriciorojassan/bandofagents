@@ -1,5 +1,6 @@
-# Secrets
+# Secrets — NEVER commit these
 .env
+.env.local
 agent_config.yaml
 
 # Python
@@ -7,6 +8,8 @@ __pycache__/
 *.pyc
 *.pyo
 *.egg-info/
+dist/
+build/
 .venv/
 venv/
 
@@ -23,7 +26,14 @@ Thumbs.db
 # uv
 .python-version
 
-# Codeband workspace (if used later)
+# Build artifacts
+slides/concat.txt
+slides/slides.*.png
+
+# Video (too large for repo)
+*.mp4
+
+# Codeband workspace
 workspace/
 .codeband/
 
